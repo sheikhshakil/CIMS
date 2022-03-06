@@ -1,0 +1,222 @@
+<% if (user.userType==="admin" ) { %> <%- include ("../partials/header.ejs") %>
+
+<section class="container">
+  <div class="shadow">
+    <div class="card-header p-3 light-bg">
+      <b>Insert data in your inventory</b>
+    </div>
+    <div class="card-body p-2">
+      <!-- purchasing -->
+      <div class="form-group-bordered mb-2">
+        <div class="card-header p-3">
+          <b>Purchasing data part</b>
+        </div>
+        <div class="card-body p-3">
+          <%- include ("../partials/forms/purchasing.ejs") %> 
+        </div>
+      </div>
+
+      <!-- processing -->
+      <div class="form-group-bordered mb-2">
+        <div class="card-header p-3">
+          <b>Processing data part</b>
+        </div>
+        <div class="card-body p-3">
+          <%- include ("../partials/forms/processing.ejs") %> 
+        </div>
+      </div>
+
+      <!-- sales and extras -->
+      <div class="row">
+        <div class="col-md-6 col-mb">
+          <!-- sales -->
+          <div class="form-group-bordered">
+            <div class="card-header p-3">
+              <b>Sales data part</b>
+            </div>
+            <div class="card-body p-3">
+              <%- include ("../partials/forms/sales.ejs") %> 
+            </div>
+          </div>
+        </div>
+
+        <!-- extra cols -->
+        <div class="col-md-6">
+          <div class="form-group-bordered">
+            <div class="card-header p-3">
+              <b>Insert or Update in extra column(s)</b>
+            </div>
+            <div class="card-body p-3">
+              <form action="/insert-extra" method="post">
+                <!-- 1 -->
+                <div class="mb-3">
+                  <label for="ain3" class="form-label">
+                    Choose assigned internal number :
+                  </label>
+                  <select
+                    required
+                    id="ain3"
+                    name="internalNum"
+                    class="form-select"
+                  >
+                    <% carsData.forEach(data => { %>
+                    <option value="<%= data.internalNum %>">
+                      <%= `${data.internalNum} : ${data.brand} - ${data.model}` %>
+                    </option>
+                    <% }) %>
+                  </select>
+                </div>
+                <!-- 2 -->
+                <div class="mb-3">
+                  <label for="ec" class="form-label">
+                    Choose column name :
+                  </label>
+                  <select required id="ec" name="propName" class="form-select">
+                    <% extraColumns.forEach(col => { %>
+                    <option value="<%= col.propName %>">
+                      <%= `${col.colName} *${col.colImp}*` %>
+                    </option>
+                    <% }) %>
+                  </select>
+                </div>
+                <!-- 3 -->
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    name="value"
+                    class="form-control"
+                    placeholder="Enter a value"
+                    required
+                  />
+                </div>
+                <div class="text-center">
+                  <button class="btn btn-dark">Save data</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- js script codes -->
+  <script>
+    //purchasing form script---------------------------------------------------------------
+    let progress;
+    let caller;
+
+    $("#purchasing-form").submit(function () {
+      //validate form
+      let fields = document.getElementById("purchasing-form").getElementsByClassName("validate")
+      let isInvalid = 0;
+
+      for (let i = 0; i < fields.length; i++) {
+        if(fields[i].value){
+          continue;
+        }
+        else {
+          ++isInvalid;
+        }
+      }
+
+      if(isInvalid > 0) {
+        if(confirm("All fields of purchasing data are not filled up. Are you sure to save the data?") == false){
+          return false;
+        }
+      }
+
+      //show progress and submit data
+      progress = 0;
+      caller = setInterval(updateProgress, 500);
+      let btn = document.getElementById("submitBtn");
+      btn.classList.add("disabled");
+      btn.innerText = "Uploading data. Please wait..";
+      return true;
+    });
+
+    //handling not availability of docs
+    $("#sellerIdCheck").change(function () {
+      let isChecked = $(this).is(':checked')
+      if(isChecked) {
+        $("#sid").removeClass('validate')
+        console.log("Validation false.")
+      }
+      else {
+        $("#sid").addClass('validate')
+        console.log("Validation true.")
+      }
+    })
+
+    $("#carPaperCheck").change(function () {
+      let isChecked = $(this).is(':checked')
+      if(isChecked) {
+        $("#cp").removeClass('validate')
+        console.log("Validation false.")
+      }
+      else {
+        $("#cp").addClass('validate')
+        console.log("Validation true.")
+      }
+    })
+
+    function updateProgress() {
+      if (progress == 80) {
+        clearInterval(caller);
+      }
+      document.getElementById(
+        "progressBar"
+      ).style.width = `${(progress += 10)}%`;
+    }
+
+    //processing form script---------------------------------------------------------------
+    $("#processing-form").submit(function () {
+      //validate form
+      let fields = document.getElementById("processing-form").getElementsByClassName("validate")
+      let isInvalid = 0;
+
+      for (let i = 0; i < fields.length; i++) {
+        if(fields[i].value){
+          continue;
+        }
+        else {
+          ++isInvalid;
+        }
+      }
+
+      if(isInvalid > 0) {
+        if(confirm("All fields of processing data are not filled up. Are you sure to save the data?") == false){
+          return false;
+        }
+      }
+
+      return true;
+    })
+
+    //sales form script---------------------------------------------------------------
+    $("#sales-form").submit(function () {
+      //validate form
+      let fields = document.getElementById("sales-form").getElementsByClassName("validate")
+      let isInvalid = 0;
+
+      for (let i = 0; i < fields.length; i++) {
+        if(fields[i].value){
+          continue;
+        }
+        else {
+          ++isInvalid;
+        }
+      }
+
+      if(isInvalid > 0) {
+        if(confirm("All fields of sales data are not filled up. Are you sure to save the data?") == false){
+          return false;
+        }
+      }
+
+      return true;
+    })
+  </script>
+</section>
+
+<%- include ("../partials/footer.ejs") %> <% } %>

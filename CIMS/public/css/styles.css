@@ -1,0 +1,138 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --colorPrimary: rgb(0, 231, 123);
+  --colorPrimaryDark: rgb(0, 199, 106);
+  --colorPrimaryLight: rgb(170, 255, 215);
+  --colorSec: rgb(0, 216, 198);
+}
+
+section {
+  min-height: 80vh;
+  padding: 3rem 0;
+}
+
+.light-bg {
+  background-color: var(--colorPrimaryLight);
+}
+.light-bg-red {
+  background-color: rgb(255, 181, 181);
+}
+.light-bg-blue {
+  background-color: rgb(181, 238, 255);
+}
+.light-bg-purple {
+  background-color: rgb(211, 195, 255);
+}
+
+.shadow {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.soft-shadow {
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+.round-border {
+  border-radius: 5px;
+}
+
+.rounded-border {
+  border-radius: 5px;
+  border: 2px solid var(--colorPrimary);
+}
+
+.form-group-bordered {
+  border-radius: 5px;
+  border: 1px solid rgb(189, 189, 189);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.form-icon {
+  font-size: 48px;
+  color: var(--colorPrimary);
+}
+
+.tag {
+  text-transform: capitalize;
+}
+
+/* navbar */
+nav {
+  background-color: var(--colorPrimary);
+}
+
+/* home */
+#intro-img {
+  max-width: 80%;
+  height: auto;
+}
+
+/* dashboard */
+.compInfo {
+  border: 1px solid var(--colorPrimaryDark);
+  background-color: #edffe9;
+}
+
+#logoDiv {
+  text-align: center;
+}
+
+.logo {
+  width: 65px;
+  height: auto;
+}
+
+.scrollHelper {
+  color: rgb(0, 148, 0);
+  text-decoration: none;
+}
+.scrollHelper:hover {
+  color: rgb(0, 179, 0);
+}
+
+#infoDiv span {
+  font-size: 14px;
+}
+
+th {
+  font-weight: 500;
+}
+th, td {
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 1rem 0;
+  }
+  #intro-div {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  #intro-img {
+    max-width: 60%;
+  }
+  .col-mb {
+    margin-bottom: 1rem;
+  }
+  .tag {
+    width: 100%;
+  }
+  .logo {
+    margin-bottom: 1rem;
+  }
+  #infoDiv {
+    text-align: center;
+  }
+  #infoDiv h5 {
+    margin-bottom: 3px;
+  }
+}

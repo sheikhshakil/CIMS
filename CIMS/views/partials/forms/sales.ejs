@@ -1,0 +1,48 @@
+<form id="sales-form" action="/sales-insert" method="post">
+  <!-- 1 -->
+  <div class="mb-3">
+    <label for="sain" class="form-label">
+      Choose assigned internal number :
+    </label>
+    <select required id="sain" name="internalNum" class="form-select">
+      <% carsData.forEach(data => { %>
+      <option value="<%= data.internalNum %>">
+        <%= `${data.internalNum} : ${data.brand} - ${data.model}` %>
+      </option>
+      <% }) %>
+    </select>
+  </div>
+  <!-- 2 -->
+  <div class="mb-3">
+    <label for="sd" class="form-label">Date of sale :</label>
+    <input
+      type="date"
+      name="saleDate"
+      class="form-control validate"
+      id="sd"
+      required
+    />
+  </div>
+  <!-- 3 -->
+  <div class="mb-3">
+    <input
+      type="text"
+      name="salePrice"
+      class="form-control validate"
+      placeholder="Sale price ($)"
+      required
+    />
+  </div>
+  <!-- 4 -->
+  <div class="mb-3">
+    <input
+      type="text"
+      name="buyerLoc"
+      class="form-control validate"
+      placeholder="Buyer's location"
+    />
+  </div>
+  <div class="text-center">
+    <button class="btn btn-success">Save data</button>
+  </div>
+</form>

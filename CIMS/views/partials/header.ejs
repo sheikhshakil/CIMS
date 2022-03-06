@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title><%= title %></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <header>
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-light shadow py-4">
+        <div class="container">
+          <a class="navbar-brand" href="/"><b>CIMS</b></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="navbar-collapse collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+              <% if (user) { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <% if (user.userType === "admin") { %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/manage-users">Manage users</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin-inv-insert">Insert data</a>
+                  </li>
+                <% } %>
+                <% if (user.userType === "sales" || user.userType === "admin") { %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/export-data">Export data</a>
+                  </li>
+                <% } %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+              <% } %>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>

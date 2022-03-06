@@ -1,0 +1,138 @@
+<form action="/processing-insert" id="processing-form" method="post">
+  <div class="row">
+    <!-- left part -->
+    <div class="col-md-6">
+      <div>
+        <!-- 1 -->
+        <div class="mb-3">
+          <label for="pain" class="form-label">
+            Choose assigned internal number :
+          </label>
+          <select required id="pain" name="internalNum" class="form-select">
+            <% carsData.forEach(data => { %>
+            <option value="<%= data.internalNum %>">
+              <%= `${data.internalNum} : ${data.brand} - ${data.model}` %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+        <!-- 2 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="engine"
+            class="form-control validate"
+            placeholder="Engine"
+          />
+        </div>
+        <!-- 3 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="transmission"
+            class="form-control validate"
+            placeholder="Transmission"
+          />
+        </div>
+        <!-- 4 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="wheels"
+            class="form-control validate"
+            placeholder="Wheels"
+          />
+        </div>
+        <!-- 5 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="headLights"
+            class="form-control validate"
+            placeholder="Headlights"
+          />
+        </div>
+        <!-- 6 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="tailLights"
+            class="form-control validate"
+            placeholder="Tail lights"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- right part -->
+    <div class="col-md-6">
+      <div>
+        <!-- 7 & 8 -->
+        <div>
+          <label class="form-label">Catalytic converters :</label>
+          <div class="form-group-bordered p-2 mb-3">
+            <!-- 7 -->
+            <div class="mb-2">
+              <input
+                type="text"
+                name="catConIn"
+                class="form-control validate"
+                placeholder="Nr. catalytic converters (IN)"
+              />
+            </div>
+            <!-- 8 -->
+            <div>
+              <input
+                type="text"
+                name="catConOut"
+                class="form-control validate"
+                placeholder="Nr. catalytic converters (OUT)"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- 9 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="sits"
+            class="form-control validate"
+            placeholder="Sits"
+          />
+        </div>
+        <!-- 10 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="radio"
+            class="form-control validate"
+            placeholder="Radio"
+          />
+        </div>
+        <!-- 11 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="battery"
+            class="form-control validate"
+            placeholder="Battery"
+          />
+        </div>
+        <!-- 12 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="remarks"
+            class="form-control validate"
+            placeholder="Remarks"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- save btn -->
+  <div class="text-center">
+    <button class="btn btn-success">Save data</button>
+  </div>
+</form>

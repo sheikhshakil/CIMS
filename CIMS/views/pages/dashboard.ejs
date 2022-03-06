@@ -1,0 +1,59 @@
+<% if (user) { %> <%- include ("../partials/header.ejs") %>
+
+<section class="container">
+  <!-- company and page info -->
+  <div class="shadow compInfo mb-3 p-3">
+    <div class="row">
+      <div class="col-md-8 col-mb">
+        <div class="row">
+          <div class="col-md-2">
+            <div id="logoDiv">
+              <% if (company) { %>
+                <img class="logo" src="<%= company.logoUrl %>" alt="Company logo here">
+              <% } else { %>
+                <img class="logo" src="images/company.png" alt="Company logo here">
+              <% } %>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div id="infoDiv">
+              <% if (company) { %>
+                <h5><%= company.compName %></h5>
+                <span class="text-muted"><%= company.compDes %></span>
+              <% } else { %>
+                <h5>Company Name</h5>
+                <span class="text-muted">Company description</span>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="text-end">
+          <button class="tag btn btn-dark">
+            <i class="bi bi-person-circle"></i> <%= user.userType %>
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="text-center">
+      <h5>Dashboard</h5>
+      <div class="text-danger">Welcome <%= user.name %></div>
+      <div><a class="scrollHelper" href="#footer">Go to bottom</a></div>
+    </div>
+  </div>
+  
+  <% if (user.userType === 'admin') { %>
+    <%- include ("../partials/dashboard/admin.ejs") %> 
+  <% } else if(user.userType === "purchasing") { %>
+    <%- include ("../partials/dashboard/purchasing.ejs") %>
+  <% } else if(user.userType === "processing") { %>
+    <%- include ("../partials/dashboard/processing.ejs") %>
+  <% } else if(user.userType === "sales") { %>
+    <%- include ("../partials/dashboard/sales.ejs") %>
+  <% } %>
+</section>
+
+<%- include ("../partials/footer.ejs") %> <% } %>

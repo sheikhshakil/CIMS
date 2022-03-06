@@ -1,0 +1,161 @@
+<form
+  action="/purchasing-insert"
+  id="purchasing-form"
+  enctype="multipart/form-data"
+  method="post"
+>
+  <div class="row">
+    <!-- left part -->
+    <div class="col-md-6">
+      <div>
+        <!-- 1 -->
+        <div class="mb-3">
+          <label for="d-p" class="form-label">Date of purchase</label>
+          <input
+            type="date"
+            name="datePurc"
+            class="form-control validate"
+            id="d-p"
+            required
+          />
+        </div>
+        <!-- 2 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="purcPrice"
+            class="form-control validate"
+            required
+            placeholder="Purchased price ($)"
+          />
+        </div>
+        <!-- 3 -->
+        <div class="mb-3">
+          <input
+            type="text"
+            name="vendor"
+            class="form-control validate"
+            placeholder="Vendor / Seller"
+          />
+        </div>
+        <!-- 4 -->
+        <div class="form-group-bordered p-2 mb-3">
+          <div>
+            <label for="sid" class="form-label">ID of Seller</label>
+            <input
+              class="form-control validate"
+              name="sellerId"
+              type="file"
+              id="sid"
+              multiple
+            />
+            <div class="mt-2">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="sellerIdCheck"
+                />
+                <label class="form-check-label" for="sellerIdCheck">
+                  Not available
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 5 -->
+        <div class="mb-3">
+          <input
+            class="form-control validate"
+            name="internalNum"
+            type="text"
+            required
+            placeholder="Assigned internal number (unique)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- right part -->
+    <div class="col-md-6">
+      <div>
+        <!-- 6 -->
+        <div class="form-group-bordered p-2 mb-3">
+          <div>
+            <label for="cp" class="form-label">Car papers</label>
+            <input
+              class="form-control validate"
+              name="carPapers"
+              type="file"
+              id="cp"
+              multiple
+            />
+            <div class="mt-2">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="carPaperCheck"
+                />
+                <label class="form-check-label" for="carPaperCheck">
+                  Not available
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 7 -->
+        <div class="mb-3">
+          <input
+            class="form-control validate"
+            name="prodYear"
+            type="text"
+            placeholder="Car production year"
+          />
+        </div>
+        <!-- 8 -->
+        <div class="mb-3">
+          <input
+            class="form-control validate"
+            name="brand"
+            type="text"
+            placeholder="Car brand"
+            required
+          />
+        </div>
+        <!-- 9 -->
+        <div class="mb-3">
+          <input
+            class="form-control validate"
+            name="model"
+            type="text"
+            placeholder="Car model"
+            required
+          />
+        </div>
+        <!-- 10 -->
+        <div class="mb-3">
+          <input
+            class="form-control validate"
+            name="vin"
+            type="text"
+            placeholder="VIN (Serial number)"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress mb-3" style="height: 20px">
+    <div
+      id="progressBar"
+      class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+      role="progressbar"
+      style="width: 0%"
+    ></div>
+  </div>
+
+  <div class="text-center">
+    <button id="submitBtn" class="btn btn-success">Save data</button>
+  </div>
+</form>

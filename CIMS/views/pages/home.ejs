@@ -1,0 +1,74 @@
+<%- include ("../partials/header.ejs") %>
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div id="intro-div">
+        <img id="intro-img" src="images/management.svg" alt="" />
+      </div>
+    </div>
+
+    <!-- login form box -->
+    <div class="col-md-6">
+      <!-- auth error msg -->
+      <% if (typeof authError != 'undefined') { %>
+      <div class="alert alert-danger text-center">
+        <i class="bi bi-shield-fill-exclamation"></i> <%= authError %>
+      </div>
+      <% } %>
+
+      <div class="shadow round-border">
+        <div class="light-bg soft-shadow round-border p-4 text-center">
+          <h5>Car Inventory Management System</h5>
+        </div>
+        <div class="p-4">
+          <div class="text-center mb-3">
+            <i class="form-icon bi bi-shield-fill-check"></i>
+          </div>
+          <div>
+            <form action="/login" method="post">
+              <div class="mb-3">
+                <label for="utype" class="form-label">Choose user type :</label>
+                <select id="utype" name="userType" class="form-select">
+                  <option value="purchasing">Purchasing person</option>
+                  <option value="processing">Processing person</option>
+                  <option value="sales">Sales person</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Enter your username"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Enter your password"
+                />
+              </div>
+              <div class="text-center">
+                <button class="btn btn-dark">Login to account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- for showing noti -->
+<script>
+  $().ready(function () {
+    $("div.alert").delay(3000);
+    $("div.alert").hide(1000);
+  });
+</script>
+
+<%- include ("../partials/footer.ejs") %>
